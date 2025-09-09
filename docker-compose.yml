@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  telegram-monitor:
+    build: .
+    container_name: telegram-fraud-monitor
+    volumes:
+      - ./data:/app/data
+    environment:
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - PHONE=${PHONE}
+      - DB_FILE=/app/data/telegram_monitor.db
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
